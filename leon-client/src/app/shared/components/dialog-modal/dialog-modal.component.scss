@@ -1,0 +1,49 @@
+@import "../../../../styles/mixins";
+
+.backdrop {
+  @include backdrop();
+}
+  
+.modal {
+  @include absoluteCenter();
+  background: #fff;
+  margin-top: 3rem;
+  border-radius: 5px;
+
+  &-form {
+    @include flex(column, space-between, unset);
+    padding: 1rem;
+  }
+  
+  p {
+      padding: 1rem;
+      font-size: 18px;
+  }
+
+  &-button {
+      @include flex(row, space-between, center);
+      padding: 1rem;
+  }
+}
+
+.navbar {
+  h1 {
+      padding: 2rem 2rem 1rem 1rem;
+      background-color: #eb4444;
+      color: #fff;
+      margin-top: 0px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+
+  }
+
+  &-esc {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    font-size: 15px;
+    color: #fff;
+    cursor: pointer;
+  }
+}
+  

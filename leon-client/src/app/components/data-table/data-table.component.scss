@@ -1,0 +1,97 @@
+@import "../../../styles/mixins";
+
+.wrapper {
+  padding: 1rem;
+}
+
+.table {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ccc;
+    &-caption {
+      font-weight: bold;
+      font-size: 22px;
+    }
+
+    &-header {
+        &_th {
+            padding: 15px;
+            background-color: #04AA6D;
+            color: #fff;
+            text-align: left;
+            font-size: 20px;
+        }
+    }
+
+    &-body {
+        &_tr:nth-child(even) {
+            background-color: #E7E9EB;
+        }
+        &_tr:nth-child(odd) {
+            background-color: #fff;
+        }
+        &_td {
+            font-size: 16px;
+            padding: 15px;
+        }
+        &_td:last-child {
+            @include flex(row-reverse, space-between, center);
+            &:first-child {
+                margin-right: 10px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    table {
+      border: 0;
+    }
+  
+    table caption {
+      font-size: 1.3em;
+    }
+    
+    .table-header {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+    
+    .table-header_tr, .table-body_tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+    }
+    
+    .table-body_td {
+      @include flex(row, space-between, center);
+      border-bottom: 1px solid #ddd;
+      font-size: 0.8em;
+      text-align: right;
+    }
+    
+    .table-body_td::before {
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .table-body_td:last-child:before {
+        display: none;
+      }
+    
+    .table-body_td:last-child {
+      border-bottom: 0;
+    }
+  }

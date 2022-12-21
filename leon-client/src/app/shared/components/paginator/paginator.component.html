@@ -1,0 +1,15 @@
+<div class="pagination">
+    <a (click)="pagination(1)">First Page</a>
+    <a (click)="pagination(currentPage - 1)" *ngIf="currentPage > 1">&laquo;</a>
+    <ng-container *ngFor="let page of pages; let i = index">
+        <a 
+            *ngIf="currentPage - (i + 1) <= 2 && currentPage - (i + 1) >= -2" 
+            [ngClass]="{'add-border': currentPage === page}" 
+            (click)="pagination(page)"
+        >{{page}}</a>
+    </ng-container>
+    <a (click)="pagination(currentPage + 1)" *ngIf="currentPage < countPage">&raquo;</a>
+    <a (click)="pagination(countPage)">Last page</a>
+</div>
+
+<!--Styling and Create a shared component on links-->

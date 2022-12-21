@@ -1,0 +1,11 @@
+<div class="wrapper">
+    <leon-data-table-component
+        [persons]="requestData?.data"
+        (actionPerson)="actionPerson.emit($event)"
+    >     
+    </leon-data-table-component>
+    <leon-paginator
+        [countPage]="requestData?.limit"
+        (loadNewPage)="loadNewPage.emit($event)"
+    ></leon-paginator>
+</div>

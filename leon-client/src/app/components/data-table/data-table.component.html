@@ -1,0 +1,64 @@
+<div class="wrapper">
+    <form [formGroup]="dataTableForm">
+        <table class="table">
+            <caption class="table-caption">Persons</caption>
+            <thead class="table-header">
+                <tr class="table-header_tr">
+                    <ng-container *ngFor="let header of headers; trackBy: trackItem">
+                        <th scope="col" class="table-header_th">{{header}}</th>
+                    </ng-container>
+                </tr>
+            </thead>
+            <tbody formArrayName="rows" class="table-body">
+                <ng-container *ngFor="let rowControl of rowsControls; let i = index; trackBy: trackItem" [formGroupName]="i">
+                    <tr class="table-body_tr">
+                        <ng-container *ngFor="let viewFormControl of viewFormControls | keyvalue; trackBy: trackItem">
+                            <td scope="row" class="table-body_td" [attr.data-label]="viewFormControl.key"   >
+                                <leon-input-data
+                                    [readonly]="formArray.at(i).get('isEditable')?.value"
+                                    [control]="rowControl.controls[viewFormControl.key]"
+                                    [class]="formArray.at(i).get('isEditable')?.value ? 'input-no-edit' : 'input-edit'"
+                                    [classControl]="'table-control'"
+                                >
+                                </leon-input-data>
+                            </td>
+                        </ng-container>
+                        <td scope="row" class="table-body_td">
+                            <ng-container *ngFor="let act of actionsConfig | keyvalue; let indexButton = index; trackBy: trackItem">
+                                <leon-action-button
+                                style="margin-right: 10px;"
+                                *ngIf="
+                                    (act.value?.dataTableVisible && (
+                                    formArray.at(i).get('isEditable')?.value &&
+                                    !act.value.editable) ||
+                                    (!formArray.at(i).get('isEditable')?.value &&
+                                    act.value.editable))
+                                "
+                                [disabled]="
+                                    (act.value.text === 'Save' && 
+                                    (formArray.at(i).invalid || isTheSameObject))
+                                "
+                                (buttonAction)="showModal($event, i)" 
+                                [actionConfig]="act.value"
+                                >
+                                </leon-action-button>
+                            </ng-container>
+                        </td>
+                    </tr>    
+                </ng-container>
+        </table>
+        <!--Вынести во вью-->
+        <leon-action-button 
+            class="add-action_button"
+            [actionConfig]="actionsConfig['addAction']" 
+            (buttonAction)="showModal($event, 1)"
+        >
+        </leon-action-button>
+        <!--Вынести во вью-->
+    </form>
+</div>
+
+<!--
+    <div class="empty_person" *ngIf="person?.length">Please, add persons to table</div>
+-->
+<ng-template refDirective></ng-template>

@@ -1,0 +1,60 @@
+.input-no-edit {
+    border: none;
+    background: none;
+    font-size: 15px;
+    cursor: default;
+    &:focus-visible {
+        outline: none;
+    }
+}
+
+.input-edit {
+    border: none;
+    background: none;
+    font-size: 15px;
+    border-bottom: 1px solid gray;
+    &:focus-visible {
+        outline: none;
+    }
+}
+
+.input-dialog {
+    border: none;
+    background: none;
+    font-size: 15px;
+    border: 1px solid gray;
+    height: 25px;
+    border-radius: 5px;
+    &:focus-visible {
+        outline: none;
+    }
+}
+
+.dialog-control {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    &_label {
+        margin-bottom: 2px;
+        color: #a19a9a;
+    }
+
+    &_errors {
+        font-size: 11px;
+        color: red;
+    }
+}
+
+.table-control {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    &_errors {
+        position: absolute;
+        top: 100%;
+        font-size: 11px;
+        color: red;
+    }
+}

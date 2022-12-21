@@ -1,0 +1,44 @@
+<div class="backdrop" (click)="close.emit(false)"></div>
+
+<div 
+  escapeDown 
+  class="modal" 
+  [@dialog-modal]
+  (escape)="close.emit(false)"
+>
+  <nav class="navbar">
+    <small class="navbar-esc" (click)="close.emit(false)">X</small>
+    <h1>{{title}}</h1>
+  </nav>
+
+  <form [formGroup]="personForm" class="modal-form" *ngIf="currentActionButton.action === 'AddRow'">
+    <ng-container *ngFor="let viewFormControl of viewFormControls | keyvalue; trackBy: trackItem">
+            <leon-input-data
+              [label]="viewFormControl.key"
+              [readonly]="false"
+              [control]="controls[viewFormControl.key]"
+              [classControl]="'dialog-control'"
+              [class]="'input-dialog'"
+              [placeholder]="viewFormControl.key"
+            >
+            </leon-input-data>
+    </ng-container>
+  </form>
+  <p *ngIf="currentActionButton.action !== 'AddRow'">
+      The next action cannot be undone.
+  </p>
+
+  <div class="modal-button">
+      <ng-container *ngFor="let action of actionsConfig | keyvalue; trackBy: trackItem">
+      <leon-action-button 
+          [disabled]="
+            personForm.invalid && 
+            action.value.action === 'Accept' && 
+            currentActionButton.action === 'AddRow'"
+          *ngIf="action.value.modalDialogVisible"
+          [actionConfig]="action.value"
+          (buttonAction)="buttonAction($event)"
+      ></leon-action-button>
+      </ng-container>
+  </div>
+</div>

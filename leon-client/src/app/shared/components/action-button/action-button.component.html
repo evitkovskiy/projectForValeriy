@@ -1,0 +1,8 @@
+<button
+    buttonColor 
+    [backgroundColor]="actionConfig.styles" 
+    (click)="buttonAction.emit(actionConfig)"
+    [disabled]="disabled"
+    >
+    {{actionConfig.text}}
+</button>

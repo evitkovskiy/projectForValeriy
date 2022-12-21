@@ -1,0 +1,25 @@
+.pagination {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .add-border {
+    border-bottom: 1px solid gray;
+  }
+
+  @media screen and (max-width: 1200px) {
+    .pagination a:first-child, .pagination a:last-child {
+      display: none;
+    }
+  }

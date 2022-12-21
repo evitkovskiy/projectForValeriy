@@ -1,0 +1,14 @@
+<div [ngClass]="classControl">
+    <label [class]="classControl + '_label'">{{ label | titlecase }}</label>
+    <input 
+        [class]="classControl + '_input'"
+        type="text" 
+        [readonly]="readonly"
+        [ngClass]="class"
+        [formControl]="control"
+    />
+    <small
+        *ngIf="control.touched"
+        [class]="classControl + '_errors'"
+    >{{getErrors()}}</small>
+  </div>

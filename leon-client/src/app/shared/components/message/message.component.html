@@ -1,0 +1,9 @@
+<div 
+    *ngIf="showMessage"
+    class="message" 
+    @message
+    (@message.done)="showMessage = !showMessage"
+>
+    <p class="message-text">{{message}}</p>
+    <span class="message-close" (click)="close.emit(true)">X</span>
+</div>

@@ -1,0 +1,13 @@
+button {
+    color: #fff;
+    border: none;
+    height: 29px;
+    width: 80px;
+    border-radius: 5px;
+
+    &:disabled {
+        border: 1px solid #999999;
+        background-color: #cccccc !important;
+        color: #666666;
+    }
+}
